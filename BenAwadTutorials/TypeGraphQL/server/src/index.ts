@@ -1,19 +1,30 @@
 import 'reflect-metadata';
 import { ApolloServer } from "apollo-server-express";
 import * as Express from 'express';
-import { buildSchema, Query, Resolver } from "type-graphql";
+import { buildSchema } from "type-graphql";
+import { DataSource } from 'typeorm';
+import { RegisterResolver } from './modules/user/Register';
 
-@Resolver()
-class HelloResolver {
-    @Query(() => String, {nullable: true})
-    async hello() {
-        return 'Hello World';
-    }
-}
+let dataSource = new DataSource({
+    "name": "default",
+    "type": "postgres",
+    "host": "localhost",
+    "port": 5432,
+    "username": "postgres",
+    "password": "password",
+    "database" : "typegraphql-example",
+    "synchronize": true,
+    "logging": true,
+    "entities": ["src/entity/*.*"]
+
+})
 
 const main = async () => {
+
+    await dataSource.initialize()
+
     const schema = await buildSchema ({
-        resolvers: [HelloResolver],
+        resolvers: [RegisterResolver],
     });
 
 

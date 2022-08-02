@@ -7,5 +7,7 @@
     "password": "password",
     "database" : "typegraphql-example",
     "synchronize": true,
-    "logging": true
+    "logging": true,
+    "entities": ["src/entity/*.*"]
+
 }
