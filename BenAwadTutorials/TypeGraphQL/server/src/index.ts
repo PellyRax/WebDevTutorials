@@ -1,8 +1,9 @@
 import 'reflect-metadata';
 import { ApolloServer } from "apollo-server-express";
-import * as Express from 'express';
+import Express from 'express';
 import { buildSchema } from "type-graphql";
 import { DataSource } from 'typeorm';
+
 import { RegisterResolver } from './modules/user/Register';
 
 let dataSource = new DataSource({
