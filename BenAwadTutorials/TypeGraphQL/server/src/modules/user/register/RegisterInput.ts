@@ -2,10 +2,10 @@ import { IsEmail, Length } from "class-validator";
 import { Field, InputType } from "type-graphql";
 
 import { IsEmailAlreadyExist } from "./IsEmailAlreadyExist";
-import { PasswordInput } from "../../shared/PasswordInput";
+import { PasswordMixin } from "../../shared/PasswordInput";
 
 @InputType()
-export class RegisterInput extends PasswordInput {
+export class RegisterInput extends PasswordMixin(class {}) {
     @Field()
     @Length(1, 255)
     firstName: string;
