@@ -22,6 +22,9 @@ export class User extends BaseEntity{
 
     @Column()
     password: string;
+    
+    @Column('bool', {default: false})
+    confirmed: boolean;
 
     @Field()
     name(@Root() parent: User): string{
