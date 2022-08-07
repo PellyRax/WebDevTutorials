@@ -3,11 +3,14 @@
       "target": "es6",
       "module": "commonjs",
       "lib": ["dom", "es6", "es2017", "esnext.asynciterable"],
+      "typeRoots": [
+        "./typing-stubs",
+        "../node_modules/@types"
+      ],
       "sourceMap": true,
       "outDir": "./dist",
       "moduleResolution": "node",
       "declaration": false,
-  
       "composite": false,
       "removeComments": true,
       "noImplicitAny": true,
