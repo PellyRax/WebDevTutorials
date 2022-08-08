@@ -2,7 +2,6 @@ require('dotenv').config()
 import 'reflect-metadata';
 import { ApolloServer } from "apollo-server-express";
 import express from 'express';
-import { buildSchema } from "type-graphql";
 import { DataSource } from 'typeorm';
 import session from 'express-session';
 import connectRedis from 'connect-redis';
@@ -10,6 +9,7 @@ import { ApolloServerPluginLandingPageGraphQLPlayground } from "apollo-server-co
 import cors from 'cors';
 
 import { redis } from './redis';
+import { createSchema } from './utils/createSchema';
 
 let dataSource = new DataSource({
     "name": "default",
@@ -28,12 +28,7 @@ let dataSource = new DataSource({
 const main = async () => {
 
     await dataSource.initialize()
-    const schema = await buildSchema ({
-        resolvers: [__dirname + '/modules/**/*.ts'],
-        authChecker: ({ context: {req} }) => {
-            return !!req.session.userID;
-        }
-    });
+    const schema = await createSchema()
 
     const apolloServer = new ApolloServer({
         schema,
