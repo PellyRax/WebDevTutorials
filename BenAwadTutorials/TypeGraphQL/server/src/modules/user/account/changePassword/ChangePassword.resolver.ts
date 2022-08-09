@@ -1,10 +1,10 @@
 import { Arg, Ctx, Mutation, Resolver } from "type-graphql";
 import bcrypt from 'bcryptjs';
 
-import { User } from "../../entity/User";
-import { redis } from "../../redis";
-import { forgotPasswordPrefix } from "../constants/redisPrefixes";
-import { ChangePasswordInput } from "./changePassword/ChangePasswordInput";
+import { User } from "../../../../entity/User";
+import { redis } from "../../../../redis";
+import { forgotPasswordPrefix } from "../../../constants/redisPrefixes";
+import { ChangePasswordInput } from "./ChangePasswordInput";
 import { MyContext } from "src/types/MyContext";
 
 

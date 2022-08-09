@@ -1,8 +1,8 @@
 import { Arg, Mutation, Resolver } from "type-graphql";
 
-import { User } from "../../entity/User";
-import { redis } from "../../redis";
-import { confirmUserPrefix } from "../constants/redisPrefixes";
+import { User } from "../../../../entity/User";
+import { redis } from "../../../../redis";
+import { confirmUserPrefix } from "../../../constants/redisPrefixes";
 
 
 

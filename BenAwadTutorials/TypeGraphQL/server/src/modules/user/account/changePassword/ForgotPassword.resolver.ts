@@ -1,10 +1,10 @@
 import { Arg, Mutation, Resolver } from "type-graphql";
 import {v4} from 'uuid'
 
-import { User } from "../../entity/User";
-import { redis } from "../../redis";
-import { forgotPasswordPrefix } from "../constants/redisPrefixes";
-import { sendEmail } from "../utils/sendEmail";
+import { User } from "../../../../entity/User";
+import { redis } from "../../../../redis";
+import { forgotPasswordPrefix } from "../../../constants/redisPrefixes";
+import { sendEmail } from "../../../utils/sendEmail";
 
 
 
