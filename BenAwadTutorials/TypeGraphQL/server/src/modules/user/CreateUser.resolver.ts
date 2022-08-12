@@ -1,32 +1,27 @@
 import { User } from "../../entity/User";
-import { Arg, ClassType, Mutation, Query, Resolver } from "type-graphql"
+import { Arg, ClassType, Mutation, Resolver, UseMiddleware } from "type-graphql"
 import { RegisterInput } from "./account/register/RegisterInput";
+import { Middleware } from "type-graphql/dist/interfaces/Middleware";
 
-function createBaseResolver<T extends ClassType, X extends ClassType>(suffix: string, returnType: T, inputType: X) {
-    @Resolver({isAbstract: true})
-    abstract class BaseResolver {
-        @Query(type => [objectTypeCls], { name: `getAll${suffix}`})
-        async getAll(
-            @Arg('first', type => Int) first: number,
-        ): Promise<T[]> {
-            return this.items.slice(0, first);
-        }
-
-        @Mutation(() => returnType, {name: `create${suffix}`})
-        async createUser(
-            @Arg('data') {data}: RegisterInput
-        ) {
-            return User.create(data).save()
-        }
-    }
-}
-
-@Resolver()
-export class CreateUserResolver {
-    @Mutation(() => User)
-    async createUser(
-        @Arg('data') {data}: RegisterInput
+function createResolver<T extends ClassType, X extends ClassType>(
+    suffix: string, 
+    returnType: T, 
+    inputType: X,
+    entity: any,
+    middleware?: Middleware<any>[]
     ) {
-        return User.create(data).save()
+    @Resolver()
+    abstract class BaseResolver {
+        @Mutation(() => returnType, {name: `create${suffix}`})
+        @UseMiddleware(...middleware || [])
+        async create(
+            @Arg('data', () => inputType) {data}: any
+        ) {
+            return entity.create(data).save()
+        }
     }
+
+    return BaseResolver;
 }
+
+export const CreateUser = createResolver("User", User, RegisterInput, User);
