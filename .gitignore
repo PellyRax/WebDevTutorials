@@ -1,5 +1,5 @@
-# Created by https://www.toptal.com/developers/gitignore/api/dotenv,reactnative,react,angular,flutter,node,nextjs
-# Edit at https://www.toptal.com/developers/gitignore?templates=dotenv,reactnative,react,angular,flutter,node,nextjs
+# Created by https://www.toptal.com/developers/gitignore/api/dotenv,reactnative,react,angular,flutter,node,nextjs,firebase,yarn
+# Edit at https://www.toptal.com/developers/gitignore?templates=dotenv,reactnative,react,angular,flutter,node,nextjs,firebase,yarn
 
 ### Angular ###
 ## Angular ##
@@ -35,6 +35,15 @@ e2e/*.map
 
 ### dotenv ###
 .env
+
+### Firebase ###
+.idea
+**/node_modules/*
+**/.firebaserc
+
+### Firebase Patch ###
+.runtimeconfig.json
+.firebase/
 
 ### Flutter ###
 # Flutter/Dart/Pub related
@@ -468,4 +477,21 @@ google-services.json
 # Android Profiling
 *.hprof
 
-# End of https://www.toptal.com/developers/gitignore/api/dotenv,reactnative,react,angular,flutter,node,nextjs
+### yarn ###
+# https://yarnpkg.com/getting-started/qa#which-files-should-be-gitignored
+
+.yarn/*
+!.yarn/releases
+!.yarn/patches
+!.yarn/plugins
+!.yarn/sdks
+!.yarn/versions
+
+# if you are NOT using Zero-installs, then:
+# comment the following lines
+!.yarn/cache
+
+# and uncomment the following lines
+# .pnp.*
+
+# End of https://www.toptal.com/developers/gitignore/api/dotenv,reactnative,react,angular,flutter,node,nextjs,firebase,yarn
